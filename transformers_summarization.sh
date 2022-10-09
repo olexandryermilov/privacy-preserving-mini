@@ -17,7 +17,6 @@ then
     --train_file ${train} \
     --validation_file ${val} \
     --test_file ${test} \
-    --source_prefix "summarize: " \
     --output_dir "./summarization_$(date +"%T")" \
     --per_device_train_batch_size=8 \
     --per_device_eval_batch_size=8 \
@@ -35,7 +34,6 @@ else
     --train_file ${train} \
     --validation_file ${val} \
     --test_file ${test} \
-    --source_prefix "summarize: " \
     --output_dir "./summarization_$(date +"%T")" \
     --per_device_train_batch_size=8 \
     --per_device_eval_batch_size=8 \

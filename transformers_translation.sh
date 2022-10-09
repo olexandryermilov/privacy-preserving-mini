@@ -14,7 +14,6 @@ then
     --do_predict \
     --source_lang en \
     --target_lang de \
-    --source_prefix "translate English to Deutsch: " \
     --train_file "${train}.json" \
     --test_file "${test}.json" \
     --output_dir "./translation_$(date +"%T")" \
@@ -32,7 +31,6 @@ else
     --do_predict \
     --source_lang en \
     --target_lang de \
-    --source_prefix "translate English to Deutsch: " \
     --train_file "${train}.json" \
     --test_file "${test}.json" \
     --output_dir "./translation_$(date +"%T")" \
