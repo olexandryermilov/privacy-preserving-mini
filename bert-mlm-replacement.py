@@ -175,7 +175,7 @@ def main():
     print(sys.argv)
     task = sys.argv[1]
     train = sys.argv[2]
-    if task == "summarization":
+    if task == "summarization" or task == "classification":
         val = sys.argv[3]
     test = sys.argv[-1]
     methodName = "ner-mask"

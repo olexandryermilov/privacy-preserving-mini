@@ -7,38 +7,36 @@ do
         r) checkpoint=${OPTARG};;
     esac
 done
-if [ ! -z "$checkpoint" ]
+if [ ! -z "$checkpoint"]
 then
-  python3 transformers/examples/pytorch/summarization/run_summarization.py \
-    --model_name_or_path facebook/bart-base \
+  python3 transformers/examples/pytorch/text-classification/run_glue.py \
+    --model_name_or_path bert-base-cased \
     --do_train \
-    --do_eval \
     --do_predict \
     --train_file ${train} \
     --validation_file ${val} \
     --test_file ${test} \
-    --output_dir "./summarization_$(date +"%T")" \
+    --output_dir "./classification_$(date +"%T")" \
     --per_device_train_batch_size=8 \
     --per_device_eval_batch_size=8 \
-    --predict_with_generate \
-    --text_column source \
-    --summary_column target \
-    --save_steps 25000 \
+    --save_steps 5000 \
+    --max_seq_length 128 \
+    --learning_rate 2e-5 \
+    --num_train_epochs 3 \
     --resume_from_checkpoint "${checkpoint}"
 else
-  python3 transformers/examples/pytorch/summarization/run_summarization.py \
-    --model_name_or_path facebook/bart-base \
+  python3 transformers/examples/pytorch/text-classification/run_glue.py \
+    --model_name_or_path bert-base-cased \
     --do_train \
-    --do_eval \
     --do_predict \
     --train_file ${train} \
     --validation_file ${val} \
     --test_file ${test} \
-    --output_dir "./summarization_$(date +"%T")" \
+    --output_dir "./classification_$(date +"%T")" \
     --per_device_train_batch_size=8 \
     --per_device_eval_batch_size=8 \
-    --predict_with_generate \
-    --text_column source \
-    --summary_column target \
-    --save_steps 25000
+    --save_steps 5000 \
+    --max_seq_length 128 \
+    --learning_rate 2e-5 \
+    --num_train_epochs 3
 fi

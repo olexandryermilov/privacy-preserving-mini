@@ -6,7 +6,7 @@ do
         r) checkpoint=${OPTARG};;
     esac
 done
-if [ ! -z "$var" ]
+if [ ! -z "$checkpoint" ]
 then
   python3 transformers/examples/pytorch/translation/run_translation.py \
     --model_name_or_path facebook/bart-base \
