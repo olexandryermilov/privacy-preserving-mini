@@ -179,8 +179,8 @@ def processFile(filePath, anonymize, methodFunc, methodName, task, name):
         source = readFile(filePath+'.en').split("\n")
         target = readFile(filePath+'.de').split("\n")
     else:
-        source = readFile('imdb_train.csv').split("\n")
-        target = readFile('imdb_test.csv').split("\n")
+        source = readFile('/home/oleksandr.yermilov/data/original_data/classification/imdb_train.csv').split("\n")
+        target = readFile('/home/oleksandr.yermilov/data/original_data/classification/imdb_test.csv').split("\n")
     together = list(zip(source, target))
     if anonymize:
         writeFileJSONAnon(name+"_anonymized_"+task+"_spacy_"+methodName+".json", together, methodFunc, task)
