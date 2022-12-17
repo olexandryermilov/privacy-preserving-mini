@@ -117,23 +117,39 @@ def writeFileJSONAnon(filePath, content, anonFunc, task):
         mask_source = en_mask_predictor
         mask_target = en_mask_predictor
         first_col_name = "text"
-        second_col_name = "summary"
-    for e in tqdm(content[:-1]):
+        second_col_name = "label"
+    if task != "classification":
+        for e in tqdm(content[:-1]):
+            f = open(filePath, "a")
+            f.write('{"'+first_col_name+'": "')
+            result += anonFunc(e[0].replace('"', '').replace('\\','').replace('\t',''), f, ner_source, mask_source)
+            f.write('","'+second_col_name+'": "')
+            result += anonFunc(e[1].replace('"', '').replace('\\','').replace('\t',''), f, ner_target, mask_target)
+            f.write('"},\n')
+            f.close()
         f = open(filePath, "a")
-        f.write('{"'+first_col_name+'": "')
-        result += anonFunc(e[0].replace('"', '').replace('\\','').replace('\t',''), f, ner_source, mask_source)
-        f.write('","'+second_col_name+'": "')
-        result += anonFunc(e[1].replace('"', '').replace('\\','').replace('\t',''), f, ner_target, mask_target)
-        f.write('"},\n')
-        f.close()
-    f = open(filePath, "a")
-    for e in content[-1:]:
+        for e in content[-1:]:
+            f = open(filePath, "a")
+            f.write('{"' + first_col_name + '": "')
+            anonFunc(e[0].replace('"', '').replace('\\', '').replace('\t', ''), f, ner_source, mask_source)
+            f.write('","'+second_col_name+'": "')
+            anonFunc(e[1].replace('"', '').replace('\\', '').replace('\t', ''), f, ner_target, mask_target)
+            f.write('"}\n')
+    else:
+        for e in tqdm(content[:-1]):
+            f = open(filePath, "a")
+            result += anonFunc(e[0].replace('"', '').replace('\\','').replace('\t',''), f, ner_source, mask_source)
+            f.write(',')
+            result += anonFunc(e[1].replace('"', '').replace('\\','').replace('\t',''), f, ner_target, mask_target)
+            f.write('\n')
+            f.close()
         f = open(filePath, "a")
-        f.write('{"' + first_col_name + '": "')
-        anonFunc(e[0].replace('"', '').replace('\\', '').replace('\t', ''), f, ner_source, mask_source)
-        f.write('","'+second_col_name+'": "')
-        anonFunc(e[1].replace('"', '').replace('\\', '').replace('\t', ''), f, ner_target, mask_target)
-        f.write('"}\n')
+        for e in content[-1:]:
+            f = open(filePath, "a")
+            anonFunc(e[0].replace('"', '').replace('\\', '').replace('\t', ''), f, ner_source, mask_source)
+            f.write(',')
+            anonFunc(e[1].replace('"', '').replace('\\', '').replace('\t', ''), f, ner_target, mask_target)
+            f.write('\n')
 
     if task == "translation":
         f.write(']}')
@@ -159,9 +175,12 @@ def processFile(filePath, anonymize, methodFunc, methodName, task, name):
     if task == 'summarization':
         source = readFile(filePath+'.source').split("\n")
         target = readFile(filePath+'.target').split("\n")
-    else:
+    elif task =="translation":
         source = readFile(filePath+'.en').split("\n")
         target = readFile(filePath+'.de').split("\n")
+    else:
+        source = readFile('imdb_train.csv').split("\n")
+        target = readFile('imdb_test.csv').split("\n")
     together = list(zip(source, target))
     if anonymize:
         writeFileJSONAnon(name+"_anonymized_"+task+"_spacy_"+methodName+".json", together, methodFunc, task)
