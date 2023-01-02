@@ -1,10 +1,11 @@
-while getopts i:v:t:r: flag
+while getopts i:v:t:r:x: flag
 do
     case "${flag}" in
         i) train=${OPTARG};;
         v) val=${OPTARG};;
         t) test=${OPTARG};;
         r) checkpoint=${OPTARG};;
+        x) method=${OPTARG};;
     esac
 done
 if [ ! -z "$checkpoint"]
@@ -16,7 +17,7 @@ then
     --train_file ${train} \
     --validation_file ${val} \
     --test_file ${test} \
-    --output_dir "./classification_$(date +"%T")" \
+    --output_dir "./classification_${method}_$(date +"%T")" \
     --per_device_train_batch_size=8 \
     --per_device_eval_batch_size=8 \
     --save_steps 5000 \
@@ -32,7 +33,7 @@ else
     --train_file ${train} \
     --validation_file ${val} \
     --test_file ${test} \
-    --output_dir "./classification_$(date +"%T")" \
+    --output_dir "./classification_${method}_$(date +"%T")" \
     --per_device_train_batch_size=8 \
     --per_device_eval_batch_size=8 \
     --save_steps 5000 \

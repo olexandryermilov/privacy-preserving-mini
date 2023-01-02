@@ -1,9 +1,10 @@
-while getopts i:t:r: flag
+while getopts i:t:r:x: flag
 do
     case "${flag}" in
         i) train=${OPTARG};;
         t) test=${OPTARG};;
         r) checkpoint=${OPTARG};;
+        x) method=${OPTARG};;
     esac
 done
 if [ ! -z "$checkpoint" ]
@@ -16,7 +17,7 @@ then
     --target_lang de \
     --train_file "${train}.json" \
     --test_file "${test}.json" \
-    --output_dir "./translation_$(date +"%T")" \
+    --output_dir "./translation_${method}_$(date +"%T")" \
     --per_device_train_batch_size=8 \
     --per_device_eval_batch_size=8 \
     --predict_with_generate \
@@ -33,7 +34,7 @@ else
     --target_lang de \
     --train_file "${train}.json" \
     --test_file "${test}.json" \
-    --output_dir "./translation_$(date +"%T")" \
+    --output_dir "./translation_${method}_$(date +"%T")" \
     --per_device_train_batch_size=8 \
     --per_device_eval_batch_size=8 \
     --predict_with_generate \
