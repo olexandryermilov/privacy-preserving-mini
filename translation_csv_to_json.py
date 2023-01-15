@@ -8,14 +8,14 @@ def process_file(path):
     lines = file.readlines()
     new_file.write('{"data":[\n')
     for line in tqdm(lines[:-1]):
-        line = line.replace('"', '')
-        obj = line.split("\t")
-        new_file.write('{"translation": {"en":"' + obj[0] +'", "de":"'+ obj[1][:-1]+'"}},\n')
+        #line = line.replace('"', '')
+        obj = line.split('","')
+        new_file.write('{"translation": {"en":"' + obj[0].replace('"', '') +'", "de":"'+ obj[1][:-1].replace('"', '')+'"}},\n')
     for line in lines[-1:]:
-        line = line.replace('"', '')
-        obj = line.split("\t")
+        #line = line.replace('"', '')
+        obj = line.split('","')
 
-        new_file.write('{"translation": {"en":"' + obj[0] + '", "de":"' + obj[1][:-1] + '"}}\n')
+        new_file.write('{"translation": {"en":"' + obj[0].replace('"', '') + '", "de":"' + obj[1][:-1].replace('"', '') + '"}}\n')
     new_file.write(']}')
 
 

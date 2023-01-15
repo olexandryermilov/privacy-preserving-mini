@@ -12,7 +12,7 @@ bash classification.sh -i /projects/oleksandry/privacy-data/original_data/classi
 
 
 #bash transformers_translation.sh -i /projects/oleksandry/privacy-data/anonymized_flair/translation_wiki/wmt15_en_de_train.csv.json -t /projects/oleksandry/privacy-data/anonymized_flair/translation_wiki/wmt15_en_de_test.csv.json -x flair_wiki
-bash transformers_translation.sh -i /projects/oleksandry/privacy-data/anonymized_flair/translation_placeholder/wmt15_en_de_train.csv.json -t /projects/oleksandry/privacy-data/anonymized_flair/translation_placeholder/wmt15_en_de_test.csv.json -x flair_placeholder
+bash transformers_translation.sh -i /projects/oleksandry/privacy-data/anonymized_flair/translation_placeholder/wmt15_en_de_train.csv -t /projects/oleksandry/privacy-data/anonymized_flair/translation_placeholder/wmt15_en_de_test.csv -x flair_placeholder
 #bash transformers_translation.sh -i /projects/oleksandry/privacy-data/anonymized_spacy/translation_wiki/wmt15_en_de_train.csv.json -t /projects/oleksandry/privacy-data/anonymized_spacy/translation_wiki/wmt15_en_de_test.csv.json -x spacy_wiki
-bash transformers_translation.sh -i /projects/oleksandry/privacy-data/anonymized_spacy/translation_placeholder/wmt15_en_de_train.csv.json -t /projects/oleksandry/privacy-data/anonymized_spacy/translation_placeholder/wmt15_en_de_test.csv.json -x spacy_placeholder
+bash transformers_translation.sh -i /projects/oleksandry/privacy-data/anonymized_spacy/translation_placeholder/wmt15_en_de_train.csv -t /projects/oleksandry/privacy-data/anonymized_spacy/translation_placeholder/wmt15_en_de_test.csv -x spacy_placeholder
 bash transformers_translation.sh -i /projects/oleksandry/privacy-data/original_data/wmt2015/train.json -t /projects/oleksandry/privacy-data/original_data/wmt2015/newstest2015.json -x original
