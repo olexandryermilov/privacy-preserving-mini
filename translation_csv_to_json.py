@@ -16,7 +16,7 @@ def process_file(path):
                 if(len(obj) < 2):
                     obj = line.split(",")
         try:
-            new_file.write('{"translation": {"en":"' + obj[0].replace('"', '').replace("'","") +'", "de":"'+ obj[1][:-1].replace('"', '').replace("'","")+'"}}\n')
+            new_file.write('{"translation": {"en":"' + obj[0].replace('"', '').replace("'","").replace("\\", "") +'", "de":"'+ obj[1][:-1].replace('"', '').replace("\\", "").replace("'","")+'"}}\n')
         except:
             print(line)
             continue
