@@ -24,8 +24,8 @@ then
     --save_steps 25000 \
     --resume_from_checkpoint "${checkpoint}"
 else
-    python3 scripts/translation_csv_to_json.py ${train}
-    python3 scripts/translation_csv_to_json.py ${test}
+    python3 translation_csv_to_json.py ${train}
+    python3 translation_csv_to_json.py ${test}
     python3 transformers/examples/pytorch/translation/run_translation.py \
     --model_name_or_path facebook/bart-base \
     --do_train \
