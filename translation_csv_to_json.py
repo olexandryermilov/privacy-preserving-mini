@@ -17,7 +17,11 @@ def process_file(path):
         else:
             obj = line.split(",")
         print(line)
-        new_file.write('{"translation": {"en":"' + obj[0].replace('"', '') +'", "de":"'+ obj[1][:-1].replace('"', '')+'"}},\n')
+        try:
+            new_file.write('{"translation": {"en":"' + obj[0].replace('"', '') +'", "de":"'+ obj[1][:-1].replace('"', '')+'"}},\n')
+        except:
+            print(line)
+            continue
     for line in lines[-1:]:
         if (line[0] == '"'):
             obj = line.split('","')
