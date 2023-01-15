@@ -8,14 +8,13 @@ def process_file(path):
     lines = file.readlines()
     #new_file.write('{"data":[\n')
     for line in tqdm(lines):
-        if(line[0] =='"'):
-            obj = line.split('","')
-            if len(obj)<2:
-                obj = line.split('",')
-                if(len(obj)<2):
-                    obj = line.split(',"')
-                    if(len(obj) < 2):
-                        obj = line.split(",")
+        obj = line.split('","')
+        if len(obj)<2:
+            obj = line.split('",')
+            if(len(obj)<2):
+                obj = line.split(',"')
+                if(len(obj) < 2):
+                    obj = line.split(",")
         try:
             new_file.write('{"translation": {"en":"' + obj[0].replace('"', '') +'", "de":"'+ obj[1][:-1].replace('"', '')+'"}}\n')
         except:
