@@ -32,8 +32,8 @@ else
     --do_predict \
     --source_lang en \
     --target_lang de \
-    --train_file "${train}.json" \
-    --test_file "${test}.json" \
+    --train_file "${train}.jsonlines" \
+    --test_file "${test}.jsonlines" \
     --output_dir "./translation_${method}_$(date +"%T")" \
     --per_device_train_batch_size=8 \
     --per_device_eval_batch_size=8 \
