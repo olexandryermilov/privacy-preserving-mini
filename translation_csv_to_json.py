@@ -8,15 +8,25 @@ def process_file(path):
     lines = file.readlines()
     new_file.write('{"data":[\n')
     for line in tqdm(lines[:-1]):
-        #line = line.replace('"', '')
-        obj = line.split('","')
-        try:
-            new_file.write('{"translation": {"en":"' + obj[0].replace('"', '') +'", "de":"'+ obj[1][:-1].replace('"', '')+'"}},\n')
-        except:
-            continue
+        if(line[0] =='"'):
+            obj = line.split('","')
+            if len(obj)<2:
+                obj = line.split('",')
+                if(len(obj)<2):
+                    obj = line.split(',"')
+        else:
+            obj = line.split(",")
+        print(line)
+        new_file.write('{"translation": {"en":"' + obj[0].replace('"', '') +'", "de":"'+ obj[1][:-1].replace('"', '')+'"}},\n')
     for line in lines[-1:]:
-        #line = line.replace('"', '')
-        obj = line.split('","')
+        if (line[0] == '"'):
+            obj = line.split('","')
+            if len(obj) < 2:
+                obj = line.split('",')
+                if (len(obj) < 2):
+                    obj = line.split(',"')
+        else:
+            obj = line.split(",")
 
         new_file.write('{"translation": {"en":"' + obj[0].replace('"', '') + '", "de":"' + obj[1][:-1].replace('"', '') + '"}}\n')
     new_file.write(']}')
