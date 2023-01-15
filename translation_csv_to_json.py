@@ -10,7 +10,10 @@ def process_file(path):
     for line in tqdm(lines[:-1]):
         #line = line.replace('"', '')
         obj = line.split('","')
-        new_file.write('{"translation": {"en":"' + obj[0].replace('"', '') +'", "de":"'+ obj[1][:-1].replace('"', '')+'"}},\n')
+        try:
+            new_file.write('{"translation": {"en":"' + obj[0].replace('"', '') +'", "de":"'+ obj[1][:-1].replace('"', '')+'"}},\n')
+        except:
+            continue
     for line in lines[-1:]:
         #line = line.replace('"', '')
         obj = line.split('","')
