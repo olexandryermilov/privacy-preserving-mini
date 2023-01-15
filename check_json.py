@@ -1,4 +1,6 @@
 import json
+import sys
+from tqdm import tqdm
 def process_file(path):
     file = open(path, 'r')
     lines = file.readlines()
