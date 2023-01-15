@@ -4,7 +4,7 @@ from tqdm import tqdm
 
 def process_file(path):
     file = open(path, 'r')
-    new_file = open(path+".jsonl", "w")
+    new_file = open(path+".json", "w")
     lines = file.readlines()
     #new_file.write('{"data":[\n')
     for line in tqdm(lines):
