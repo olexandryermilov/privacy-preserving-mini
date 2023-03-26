@@ -3,7 +3,7 @@ import logging
 import openai
 import sys
 
-openai_key = ""
+openai_key = "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"
 
 def get_response(text):
     openai.api_key = openai_key

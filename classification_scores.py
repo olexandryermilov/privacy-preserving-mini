@@ -1,7 +1,6 @@
 from datasets import load_dataset
 import sklearn.metrics
 import sys
-from tqdm import tqdm
 
 target = load_dataset("imdb")
 
@@ -11,5 +10,3 @@ with open(sys.argv[1], "r") as f:
     for prediction in predictions:
         res_orig.append(int(prediction.split("\t")[1][0]))
     print(sklearn.metrics.f1_score(target["test"]["label"], res_orig))
-
-print(len(res_anon) == len(res_orig))
