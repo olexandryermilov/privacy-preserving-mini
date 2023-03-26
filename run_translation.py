@@ -2,7 +2,9 @@ import transformers
 import sys
 import re
 from tqdm import tqdm
-
+import flair
+from flair.data import Sentence
+from flair.models import SequenceTagger
 from datasets import load_dataset
 import spacy
 nlp = spacy.load('en_core_web_sm')
