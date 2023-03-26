@@ -260,8 +260,8 @@ def entity_type_flair(word):
     return sentence.get_spans('ner')[0].get_label().value
 
 def check_words(prediction, target):
-    prediction_entity = entity_type(prediction)
-    target_entity = entity_type(target)
+    prediction_entity = entity_type_flair(prediction)
+    target_entity = entity_type_flair(target)
     fp, tp, fn, tn = 0,0,0,0
     if (prediction_entity == ""):
         if (prediction == target):
