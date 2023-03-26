@@ -261,7 +261,6 @@ def entity_type_flair(word):
 
 def check_words(prediction, target):
     prediction_entity = entity_type_flair(prediction)
-    target_entity = entity_type_flair(target)
     fp, tp, fn, tn = 0,0,0,0
     if (prediction_entity == ""):
         if (prediction == target):
@@ -269,7 +268,7 @@ def check_words(prediction, target):
         else:
             fp = 1
     else:
-        target_entity = entity_type(target)
+        target_entity = entity_type_flair(target)
         if (prediction == target):
             fn = 1
         else:
