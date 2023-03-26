@@ -590,6 +590,7 @@ def main():
             fp, tp, fn, tn = 0, 0, 0, 0
             for i in range(len(target)):
                 fp_i, tp_i, fn_i, tn_i = check_words(prediction[i], target[i])
+                print(fp_i, tp_i, fn_i, tn_i)
                 fp += fp_i
                 tp += tp_i
                 fn += fn_i
