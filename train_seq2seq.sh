@@ -1,0 +1,13 @@
+python3 run_translation.py \
+    --model_name_or_path facebook/bart-base \
+    --do_train \
+    --do_predict \
+    --source_lang en \
+    --target_lang de \
+    --train_file "/projects/oleksandry/ucu-anonymization/train_flair.json" \
+    --test_file  "/projects/oleksandry/ucu-anonymization/test_flair.json" \
+    --output_dir "./seq2seq_flair_$(date +"%T")" \
+    --per_device_train_batch_size=8 \
+    --per_device_eval_batch_size=8 \
+    --predict_with_generate \
+    --save_steps 25000
