@@ -260,7 +260,7 @@ def entity_type_flair(word):
     return sentence.get_spans('ner')[0].get_label().value
 
 def check_words(prediction, target):
-    prediction_entity = entity_type_flair(prediction)
+    prediction_entity = entity_type_spacy(prediction)
     fp, tp, fn, tn = 0,0,0,0
     if (prediction_entity == ""):
         if (prediction == target):
@@ -268,7 +268,7 @@ def check_words(prediction, target):
         else:
             fp = 1
     else:
-        target_entity = entity_type_flair(target)
+        target_entity = entity_type_spacy(target)
         if (prediction == target):
             fn = 1
         else:
@@ -575,16 +575,16 @@ def main():
             labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
         decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
 
-        print(decoded_labels[0])
-        print(decoded_preds[0])
+        #print(decoded_labels[0])
+        #print(decoded_preds[0])
 
         # Some simple post-processing
         decoded_preds, decoded_labels = postprocess_text(decoded_preds, decoded_labels)
 
         fps, tps, fns, tns = 0, 0, 0, 0
         for x in zip(decoded_labels, decoded_preds):
-            print(f"!!!!!{x[0]}")
-            print(f"!!!!!{x[1]}")
+            #print(f"!!!!!{x[0]}")
+            #print(f"!!!!!{x[1]}")
             target = x[0][0].split(" ")
             prediction = x[1].split(" ")
             fp, tp, fn, tn = 0, 0, 0, 0
@@ -600,7 +600,7 @@ def main():
             fns += fn
             tns += tn
 
-        print(fps, tps, fns, tns)
+        #print(fps, tps, fns, tns)
         #result = metric.compute(predictions=decoded_preds, references=decoded_labels)
         result = {"f1": 2.0*tps/(2.0*tps + fps + fns)}
 

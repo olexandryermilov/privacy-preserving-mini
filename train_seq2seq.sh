@@ -4,8 +4,8 @@ python3 run_translation.py \
     --do_predict \
     --source_lang en \
     --target_lang de \
-    --train_file "/projects/oleksandry/ucu-anonymization/train_flair.json" \
-    --test_file  "/projects/oleksandry/ucu-anonymization/test_flair.json" \
+    --train_file "/projects/oleksandry/ucu-anonymization/train_spacy.json" \
+    --test_file  "/projects/oleksandry/ucu-anonymization/test_spacy.json" \
     --output_dir "./seq2seq_flair_$(date +"%T")" \
     --per_device_train_batch_size=8 \
     --per_device_eval_batch_size=8 \
