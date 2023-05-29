@@ -7,6 +7,8 @@ from flair.data import Sentence
 from flair.models import SequenceTagger
 from datasets import load_dataset
 import spacy
+import os
+os.environ["WANDB_DISABLED"] = "true"
 nlp = spacy.load('en_core_web_sm')
 
 def main():
